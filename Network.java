@@ -63,17 +63,17 @@ public class Network {
     public boolean addFollowee(String name1, String name2) {
         User user1 = getUser(name1);
         User user2 = getUser(name2);
-
-
+        
+        if (name1 == null || name2 == null) {
+            return false;
+        }
         if (name1.equals(name2)) {
             return false;
         }
-        if (user1 != null && user2 != null) {
-            if (!user1.follows(name2)) {
+        if (user1 != null && user2 != null && !user1.follows(name2)) {
             user1.addFollowee(name2);
             return true;
         }
-    }
         return false;
     }
     
