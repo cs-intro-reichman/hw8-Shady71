@@ -1,3 +1,5 @@
+import org.w3c.dom.events.MutationEvent;
+
 /** Represents a user in a social network. A user is characterized by a name,
  *  a list of user names that s/he follows, and the list's size. */
  public class User {
@@ -44,7 +46,7 @@
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
 
-        for (int i = 0; i < follows.length; i++) {
+        for (int i = 0; i < fCount; i++) {
             if (name.equals(follows[i])) {
                 return true;
             }
@@ -70,7 +72,9 @@
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
-
+        if (name == null) {
+            return false;
+        }
         for (int i = 0; i < follows.length; i++) {
             if (name.equals(follows[i])) {
                 for (int j = i; j < fCount - 1; j++) {
@@ -87,15 +91,15 @@
     /** Counts the number of users that both this user and the other user follow.
     /*  Notice: This is the size of the intersection of the two follows lists. */
     public int countMutual(User other) {
-        int counter = 0;
+        int mutualFriends = 0;
         for (int i = 0; i < this.fCount; i++) {
             for (int j = 0; j < other.fCount; j++) {
                 if (this.follows[i].equals(other.follows[j])) {
-                    counter++;
+                    mutualFriends++;
                 }
             }
         }
-        return counter;
+        return mutualFriends;
     }
 
     /** Checks is this user is a friend of the other user.
