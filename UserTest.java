@@ -9,6 +9,7 @@ public class UserTest {
         System.out.println("Dummy follows Bar: " + dummy.follows("Bar"));
         System.out.println("Dummy follows Gil: " + dummy.follows("Gil"));
 
+
         System.out.println("\n...Now starts the serious testing..\n");
 
         System.out.println("...Creating a user named Alex...");

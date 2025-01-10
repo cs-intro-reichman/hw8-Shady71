@@ -1,5 +1,3 @@
-import org.w3c.dom.events.MutationEvent;
-
 /** Represents a user in a social network. A user is characterized by a name,
  *  a list of user names that s/he follows, and the list's size. */
  public class User {
@@ -45,7 +43,8 @@ import org.w3c.dom.events.MutationEvent;
 
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-
+        name = name.toLowerCase();
+        
         for (int i = 0; i < fCount; i++) {
             if (name.equals(follows[i])) {
                 return true;
