@@ -56,7 +56,7 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
         name = name.toLowerCase();
-        
+
         for (int i = 0; i < follows.length; i++) {
             if (!follows(name) && fCount != maxfCount) {
                 if (follows[i] == null) {
@@ -72,11 +72,12 @@
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
+        name = name.toLowerCase();
         if (name == null) {
             return false;
         }
         for (int i = 0; i < follows.length; i++) {
-            if (name.equals(follows[i])) {
+            if (name.equals(follows[i].toLowerCase())) {
                 for (int j = i; j < fCount - 1; j++) {
                     follows[j] = follows[j + 1];
                 }
@@ -105,13 +106,16 @@
     /** Checks is this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
+
         for (int i = 0; i < this.fCount; i++) {
-            if (this.follows(other.name) && other.follows(name)) {
-                return true;
+            if (this.follows[i].equals(other.name)) {
+                for (int j = 0; j < other.fCount; j++) {
+                    if (other.follows[j].equals(this.name)) {
+                        return true;
+                    }
+                }
             }
         }
-
-
         return false;
     }
     /** Returns this user's name, and the names that s/he follows. */
