@@ -75,7 +75,7 @@
         }
         name = name.toLowerCase();
         for (int i = 0; i < follows.length; i++) {
-            if (name.equals(follows[i].toLowerCase())) {
+            if (follows[i] != null && name.equals(follows[i].toLowerCase())) {
                 for (int j = i; j < fCount - 1; j++) {
                     follows[j] = follows[j + 1];
                 }
